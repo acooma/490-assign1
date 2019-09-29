@@ -1,5 +1,7 @@
+
 .App {
   text-align: center;
+  font-family: 'Nunito', sans-serif;
 }
 
 .App-logo {
@@ -19,4 +21,38 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+.input-box {
+  width: 10%;
+  margin-left: 20px;
+}
+
+.table-container {
+  color: black;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.35);
+  background-color: white;
+}
+
+.main-container {
+  height: 147px;
+  color: black;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.35);
+  background-color: white;
+}
+
+.main-label {
+  font-size: 19px;
+}
+
+.input-box {
+  width: 10%;
+}
+
+.form-control {
+  width: 8%;
+}
+
+.row-text {
+  line-height: 2.45;
 }
