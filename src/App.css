@@ -34,6 +34,10 @@
   background-color: white;
 }
 
+.table-cell {
+  color: black;
+}
+
 .main-container {
   height: 147px;
   color: black;
@@ -55,4 +59,12 @@
 
 .row-text {
   line-height: 2.45;
+}
+
+.black {
+  color: black;
+}
+
+.green {
+  color: green!important;
 }

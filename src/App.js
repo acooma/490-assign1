@@ -10,10 +10,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rows1: "3",
-      rows2: "",
-      columns1: "4",
-      columns2: "",
+      rows1: "0",
+      rows2: "0",
+      columns1: "0",
+      columns2: "0",
       matching: "",
       dataSet: [
         "Jake",
@@ -27,28 +27,41 @@ class App extends Component {
         "Fake",
         "Tester",
         "Science",
-        "Food",
-        "Random",
-        "Words",
-        "Fill",
-        "School",
-        "Homework",
-        "New York",
-        "Kansas",
-        "Texas",
-        "USA",
-        "Utah",
-        "Korea",
-        "Japan",
-        "Minnesota",
-        "Mount Everest"
+        "Food"
+        // "Random",
+        // "Words",
+        // "Fill",
+        // "School",
+        // "Homework",
+        // "New York",
+        // "Kansas",
+        // "Texas",
+        // "USA",
+        // "Utah",
+        // "Korea",
+        // "Japan",
+        // "Minnesota",
+        // "Mount Everest",
+        // "ASDF",
+        // "LLLOLL",
+        // "Pharmacy",
+        // "Doctor",
+        // "test",
       ]
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   //using cdu to check if value is being processed correctly
-  componentDidUpdate(prevProps, prevState) {}
+  componentDidUpdate(prevProps, prevState) {
+    let match = this.state.matching;
+    let elements = document.getElementsByName(match);
+
+    for (let k = 0; k < elements.length; k++) {
+      console.log("table2", elements[k]);
+      elements[k].className = "green";
+    }
+  }
 
   handleChange(event) {
     // check it out: we get the evt.target.name (which will be either "email" or "password")
@@ -62,16 +75,57 @@ class App extends Component {
     let cols = this.state.columns1;
     let setData = this.state.dataSet;
     let data = shuffle(setData);
+    let match = this.state.matching;
 
-    console.log(data);
-    
     // Outer loop to create parent
     for (let i = 0; i < rows; i++) {
       let children = [];
       //Inner loop to create children
       for (let j = 0; j < cols; j++) {
         shuffle(data);
-        children.push(<td id={j}>{data[j]}</td>);
+        children.push(
+          <td className="black" id={j} name={data[j]}>
+            {data[j]}
+          </td>
+        );
+      }
+      //Create the parent and add the children
+      table.push(<tr id={i}>{children}</tr>);
+
+      let elements = document.getElementsByName(match);
+      console.log("MATCH", match);
+
+      // for (let k = 0; k < elements.length; k++) {
+      //   console.log(elements[k]);
+      //   if (elements[k] === match) {
+      //     console.log("table1", elements[k]);
+          
+      //     elements[k].className = "green";
+      //   }
+      // }
+    }
+    return table;
+  };
+
+  createTable2 = () => {
+    let table = [];
+    let rows = this.state.rows2;
+    let cols = this.state.columns2;
+    let setData = this.state.dataSet;
+    let data = shuffle(setData);
+    let match = this.state.matching;
+
+    // Outer loop to create parent
+    for (let i = 0; i < rows; i++) {
+      let children = [];
+      //Inner loop to create children
+      for (let j = 0; j < cols; j++) {
+        shuffle(data);
+        children.push(
+          <td className="black" id={j} name={data[j]}>
+            {data[j]}
+          </td>
+        );
       }
       //Create the parent and add the children
       table.push(<tr id={i}>{children}</tr>);
@@ -80,10 +134,11 @@ class App extends Component {
   };
 
   render() {
+    var self = this;
     return (
       <div className="App">
         <div class="container">
-          <div className="main-container shadow row p-2">
+          <div className="main-container shadow row p-2 border-bottom">
             <form class="col-4 pl-5">
               <div class="row">
                 <a class="main-label ">Table 1</a>
@@ -115,7 +170,8 @@ class App extends Component {
                 />
               </div>
             </form>
-            <div class="col-4">
+
+            <form class="col-4">
               <div class="row">
                 <a class="main-label">Table 2</a>
               </div>
@@ -145,8 +201,9 @@ class App extends Component {
                   onChange={this.handleChange}
                 />
               </div>
-            </div>
-            <div class="col-4 mt-5">
+            </form>
+
+            <form class="col-4 mt-5">
               <div class="row">
                 <a class="row-text">Matching items</a>
                 <input
@@ -159,20 +216,18 @@ class App extends Component {
                   onChange={this.handleChange}
                 />
               </div>
-              <div class="ml-5 mt-2">
-                <input
-                  class="btn btn-primary mr-1"
-                  type="reset"
-                  value="Reset"
-                />
-                <input class="btn btn-primary" type="submit" value="Submit" />
-              </div>
-            </div>
+            </form>
           </div>
 
-          <table class="table-container col-6">
-            <this.createTable />
-          </table>
+          <div class="row">
+            <table class="table-container col-6">
+              <this.createTable ref={el => (this._html = el)} />
+            </table>
+
+            <table class="table-container col-6">
+              <this.createTable2 />
+            </table>
+          </div>
         </div>
       </div>
     );
