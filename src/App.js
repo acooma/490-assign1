@@ -10,10 +10,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rows1: "0",
-      rows2: "0",
-      columns1: "0",
-      columns2: "0",
+      rows1: "",
+      rows2: "",
+      columns1: "",
+      columns2: "",
       matching: "",
       dataSet: [
         "Jake",
@@ -27,7 +27,23 @@ class App extends Component {
         "Fake",
         "Tester",
         "Science",
-        "Food"
+        "Food",
+        "Jake",
+        "John",
+        "Catherine",
+        "NIU",
+        "Jake",
+        "John",
+        "Catherine",
+        "NIU",
+        "Jake",
+        "John",
+        "Catherine",
+        "NIU",
+        "Jake",
+        "John",
+        "Catherine",
+        "NIU",
         // "Random",
         // "Words",
         // "Fill",
@@ -99,7 +115,7 @@ class App extends Component {
       //   console.log(elements[k]);
       //   if (elements[k] === match) {
       //     console.log("table1", elements[k]);
-          
+
       //     elements[k].className = "green";
       //   }
       // }
@@ -205,7 +221,7 @@ class App extends Component {
 
             <form class="col-4 mt-5">
               <div class="row">
-                <a class="row-text">Matching items</a>
+                <a class="row-text">Matching item</a>
                 <input
                   type=""
                   class="ml-4"
